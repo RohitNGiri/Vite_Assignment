@@ -1,45 +1,31 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import { Stack } from '@mui/material';
+import FirstPage from './FirstPage';
+import SecondPage from './SecondPage';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { MyContext } from './MyContext';
+import { useState } from 'react';
+import Alert from '@mui/material/Alert';
+
+
 
 function App() {
 
-  const [name, setName] = useState('');
-  const [phonenum, setPhonenum] = useState('')
-  const [email, setEmail] = useState('');
-  const [data, setData] = useState([]);
+  const [text, setText] = useState(false);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    console.log(name, phonenum, email);
-
-
-    const user = {name, phonenum, email};
-    // localStorage.setItem('user', response)
-    console.log(user);
-     localStorage.setItem('user', JSON.stringify(user));
-    
-  }
 
   return (
     <>
-    <div className="container">
-      <h4>Please Enter the given details below</h4>
-      <form  onSubmit={handleSubmit}>
-        <Stack direction="column">
-        <TextField label='Enter Name'   sx={{mb: 2}} value={name} onChange={e=>setName(e.target.value)} type="text" required></TextField>
-        <TextField label='Phone Number'sx={{mb: 2}} value={phonenum} onChange={e=>setPhonenum(e.target.value)} type="number" required></TextField>
-        <TextField label='Email' sx={{mb: 2}} value={email} onChange={e=>setEmail(e.target.value)} type="email" required></TextField>
-        <Button color="secondary" type='submit'>Submit</Button>
-     
-        </Stack>
-         </form>
-    </div>
+    <MyContext.Provider value={{text, setText}}>
+    <BrowserRouter>
+        {text &&  <Alert severity="error">Must enter their
+details before accessing the page.</Alert>}
+      <Routes>
+        <Route path='/' element={<FirstPage />} />
+        <Route path='/secondpage' element={<SecondPage />} />
+    
+      </Routes>
+    </BrowserRouter>
+    </MyContext.Provider>
       
     </>
   )

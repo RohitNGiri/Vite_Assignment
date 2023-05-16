@@ -1,12 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { MyContext } from './MyContext';
+import DataGrid from './DataGrid'
+
+const url = 'https://jsonplaceholder.typicode.com/posts'
+
 
 const SecondPage = () => {
      
   const navigate = useNavigate();
   const userdata = localStorage.getItem('user'); 
+  const [tours, setTours] = useState([]);
 
   const { text, setText } = useContext(MyContext);
   
@@ -17,11 +22,33 @@ const SecondPage = () => {
        setText(true);
      }
     
-    },[navigate, userdata])
+    },[navigate, setText, userdata])
+  
+
+   
+const fetchTours = async () => {
+
+    try {
+      const response = await fetch(url);
+      const tours = await response.json();
+      setTours(tours);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchTours();
+  }, [])
+
+   
+
+   
+   
 
   return (
     <div>
-        <h1>second page</h1>
+    
+     <DataGrid tours={tours}  />
     </div>
   )
 }

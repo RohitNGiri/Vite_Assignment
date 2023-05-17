@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { MyContext } from './MyContext';
-import DataGrid from './DataGrid'
+import DataGrida from './DataGrid'
+import Department from './Department';
+import SubDepartment from './SubDepartment';
 
 const url = 'https://jsonplaceholder.typicode.com/posts'
 
@@ -48,7 +50,9 @@ const fetchTours = async () => {
   return (
     <div>
     
-     <DataGrid tours={tours}  />
+     {/* <DataGrida tours={tours}  /> */}
+     <Department />
+     <SubDepartment />
     </div>
   )
 }

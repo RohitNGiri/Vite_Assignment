@@ -848,3 +848,15 @@ export default SubDepartment;
 
 
 (correct || checked ) && (correct[0] !== correct[1]) || (checked[0] !== checked[1])
+
+
+
+
+
+  if(!(checked || correct || correct1)){
+    setChecked([false,false]);
+     setCorrect([false,false]);
+     setCorrect1([false,false]);
+
+    }
+ 

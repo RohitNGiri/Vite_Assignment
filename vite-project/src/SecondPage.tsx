@@ -50,7 +50,7 @@ const fetchTours = async () => {
   return (
     <div>
     
-     {/* <DataGrida tours={tours}  /> */}
+     <DataGrida tours={tours}  />
      <Department />
      <SubDepartment />
     </div>

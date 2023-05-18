@@ -1,19 +1,26 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { useState } from 'react'
 import data from './data'
+import Button from '@mui/material/Button';
 
 export default function IndeterminateCheckbox() {
 
-   const [index, setIndex] = useState(0);
+   const [index] = useState(0);
+   const [expander, setExpander] = useState(false);
    const {department, sub_departments} = data[index];
    
    const [checked, setChecked] = useState([true, false]);
    
 
-   
+   const handleExpander = () => {
+    if(expander){
+      setExpander(false)
+    }else{
+      setExpander(true);
+    }
+   }
 
   const handleChange1 = (event) => {
     setChecked([event.target.checked, event.target.checked]);
@@ -34,18 +41,23 @@ export default function IndeterminateCheckbox() {
   return (
     <>
     <div>
-
-      <FormControlLabel sx={{ ml: 8 }}
+      {expander ? <Button onClick={handleExpander} style={{ fontSize: '30px' }}>-</Button> : <Button onClick={handleExpander} style={{ fontSize: '30px' }}>+</Button> }
+      
+      
+      <FormControlLabel sx={{ ml: 0 }}
         label={department}
         control={
           <Checkbox
-            checked={checked[0] && checked[1]}
-            indeterminate={checked[0] !== checked[1]}
-            onChange={handleChange1}
+          checked={checked[0] && checked[1]}
+          indeterminate={checked[0] !== checked[1]}
+          onChange={handleChange1}
           />
         }
-      />
-       <Box sx={{ display: 'flex', flexDirection: 'column', ml: 3 }}>
+        />
+      
+      {
+        expander &&
+        <Box sx={{ display: 'flex', flexDirection: 'column', ml: 3 }}>
        <FormControlLabel
         label={sub_departments[0]}
         control={<Checkbox checked={checked[0]} onChange={handleChange2} />}
@@ -55,6 +67,8 @@ export default function IndeterminateCheckbox() {
         control={<Checkbox checked={checked[1]} onChange={handleChange3} />}
         /> 
     </Box>
+      }
+       
 
 
 

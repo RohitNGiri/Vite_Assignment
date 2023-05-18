@@ -1,6 +1,7 @@
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 
-const DataGrida = ({tours}) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const DataGrida = ({tours}: any) => {
 
   const columns : GridColDef[] = [
     { field: 'col1', headerName: 'Id', width: 150 },
@@ -10,6 +11,7 @@ const DataGrida = ({tours}) => {
   ];
 
   
+  ;
   
   
 
@@ -18,7 +20,7 @@ const DataGrida = ({tours}) => {
     <section>
       <DataGrid columns={columns} rows={
 
-  tours.map((ids)=>{
+  tours.map((ids: any)=>{
     
     return { id: ids.id, col1: ids.id, col2: ids.userId, col3: ids.title, col4: ids.body  }
     

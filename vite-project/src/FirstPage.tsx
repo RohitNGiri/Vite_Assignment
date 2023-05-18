@@ -2,8 +2,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Stack } from '@mui/material';
 import { useEffect, useState } from 'react'
-import { Link,  useNavigate } from 'react-router-dom';
-import SecondPage from './SecondPage';
+import { useNavigate } from 'react-router-dom';
+
 
 
 
@@ -12,11 +12,11 @@ const FirstPage = () => {
   const [name, setName] = useState('');
   const [phonenum, setPhonenum] = useState('')
   const [email, setEmail] = useState('');
-  const [data, setData] = useState(false);
+  
   
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = () => {
     // event.preventDefault();
     console.log(name, phonenum, email);
 

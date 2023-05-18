@@ -22,16 +22,16 @@ export default function IndeterminateCheckbox() {
     }
    }
 
-  const handleChange1 = (event) => {
+  const handleChange1 = (event: { target: { checked: boolean; }; }) => {
     setChecked([event.target.checked, event.target.checked]);
   };
 
 
-  const handleChange2 = (event) => {
+  const handleChange2 = (event: { target: { checked: boolean; }; }) => {
     setChecked([event.target.checked, checked[1]]);
   };
 
-  const handleChange3 = (event) => {
+  const handleChange3 = (event: { target: { checked: boolean; }; }) => {
     setChecked([checked[0], event.target.checked]);
   };
   

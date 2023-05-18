@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { MyContext } from './MyContext';
 import DataGrida from './DataGrid'
 import Department from './Department';
 import SubDepartment from './SubDepartment';
+import data from './data';
 
 const url = 'https://jsonplaceholder.typicode.com/posts'
 
@@ -14,8 +16,10 @@ const SecondPage = () => {
   const navigate = useNavigate();
   const userdata = localStorage.getItem('user'); 
   const [tours, setTours] = useState([]);
-
-  const { text, setText } = useContext(MyContext);
+  
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+  const { setText } = useContext(MyContext);
   
 
   useEffect(()=>{
@@ -24,7 +28,7 @@ const SecondPage = () => {
        setText(true);
      }
     
-    },[navigate, setText, userdata])
+    },[navigate, userdata])
   
 
    
@@ -50,7 +54,7 @@ const fetchTours = async () => {
   return (
     <div>
     
-     <DataGrida tours={tours}  />
+     <DataGrida tours={tours} {...data}  />
      <Department />
      <SubDepartment />
     </div>
